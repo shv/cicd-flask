@@ -20,3 +20,5 @@ jobs:
         run: covarage run src/tests.py
       - name: Test report
         run: covarage report
+      - name: Other tests
+        run: pytest src/tests.py -v
