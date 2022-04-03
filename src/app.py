@@ -7,7 +7,7 @@ def validate_post_data(data: dict) -> bool:
         return False
     if not data.get('name') or not isinstance(data['name'], str):
         return False
-    if not data.get('age') or not isinstance(data['age'], int):
+    if data.get('age') and not isinstance(data['age'], int):
         return False
     return True
 
@@ -21,7 +21,7 @@ def api():
         return jsonify({'status': 'test'})
     elif request.method == 'POST':
         if validate_post_data(request.json):
-            return jsonify({'status': 'ok'})
+            return jsonify({'status': 'OK'})
         else:
             return jsonify({'status': 'bad input'}), 400
 
