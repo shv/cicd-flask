@@ -1,18 +1,19 @@
 on:
   release:
     types: [published]
-build_and_pub:
-  needs: [run_tests]
-env:
-  LOGIN: ${{secrets.DOCKER_LOGIN}}
-  NAME: ${{secrets.DOCKER_NAME}}
-steps:
-  - name: echo
-    run: echo ${GITHUB_REF}
-  - name: Login to docker.io
-    run: echo ${{secrets.DOCKER_PWD}} | decker login -u ${{secrets.DOCKER_LOGIN}}
-  - uses: actions/checkot@master
-  - name: Build image
-    run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
-  - name: Push image to docker.io
-    run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
+jobs:
+  build_and_pub:
+    needs: [run_tests]
+    env:
+      LOGIN: ${{secrets.DOCKER_LOGIN}}
+      NAME: ${{secrets.DOCKER_NAME}}
+    steps:
+      - name: echo
+        run: echo ${GITHUB_REF}
+      - name: Login to docker.io
+        run: echo ${{secrets.DOCKER_PWD}} | decker login -u ${{secrets.DOCKER_LOGIN}}
+      - uses: actions/checkot@master
+      - name: Build image
+        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
