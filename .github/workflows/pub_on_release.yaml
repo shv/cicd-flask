@@ -8,6 +8,7 @@ on:
 jobs:
   build_and_pub:
 #    needs: [run_tests]
+    runs-on: [ubuntu-latest]
     env:
       LOGIN: ${{secrets.DOCKER_LOGIN}}
       NAME: ${{secrets.DOCKER_NAME}}
