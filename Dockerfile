@@ -5,11 +5,11 @@ COPY ./ /app
 # Устанавливаем все зависимости
 RUN apk update && pip install -r /app/requirements.txt --no-cache-dir
 # Устанавливаем приложение (Подробнее смотри Distutils)
-RUN pip install -e /app
+#RUN pip install -e /app
 # Говорим контейнеру какой порт слушай
-EXPOSE 8080
+#EXPOSE 8080
 # Запуск нашего приложения при старте контейнера
-CMD web_server
+#CMD web_server
 
 # В качестве альтернативы distutils можно просто указать что выполнить
-#CMD python /app/src/app.py
+CMD python /app/src/app.py
