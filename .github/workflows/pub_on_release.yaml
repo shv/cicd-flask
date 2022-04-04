@@ -1,9 +1,13 @@
+name: Push Docker
 on:
   release:
     types: [published]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   build_and_pub:
-    needs: [run_tests]
+#    needs: [run_tests]
     env:
       LOGIN: ${{secrets.DOCKER_LOGIN}}
       NAME: ${{secrets.DOCKER_NAME}}
