@@ -16,7 +16,7 @@ jobs:
       - name: echo
         run: echo ${GITHUB_REF}
       - name: Login to docker.io
-        run: echo ${{secrets.DOCKER_PWD}} | decker login -u ${{secrets.DOCKER_LOGIN}}
+        run: echo ${{secrets.DOCKER_TOKEN}} | decker login -u ${{secrets.DOCKER_LOGIN}}
       - uses: actions/checkout@master
       - name: Build image
         run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
